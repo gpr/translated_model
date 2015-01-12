@@ -1,11 +1,29 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  key: MyString
-  locale: MyString
-  value: MyString
+test_a_name:
+  translated_id: 1
+  translated_type: Item
+  key: name
+  locale: en
+  value: 'Test A name'
 
-two:
-  key: MyString
-  locale: MyString
-  value: MyString
+test_a_description:
+  translated_id: 1
+  translated_type: Item
+  key: description
+  locale: en
+  value: 'Test A description'
+
+test_b_name:
+  translated_id: 2
+  translated_type: Item
+  key: name
+  locale: fr
+  value: 'Test B name'
+
+test_b_description:
+  translated_id: 2
+  translated_type: Item
+  key: description
+  locale: fr
+  value: 'Test B description'

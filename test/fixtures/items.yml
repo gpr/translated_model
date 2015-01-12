@@ -1,7 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-a:
+test_a:
+  id: 1
   key: test_a
 
-b:
+test_b:
+  id: 2
   key: test_b
+
+test_c:
+  id: 3
+  key: test_c

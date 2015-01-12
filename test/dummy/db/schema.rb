@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150103220833) do
+ActiveRecord::Schema.define(version: 20150110110447) do
 
   create_table "items", force: :cascade do |t|
     t.string   "key"
@@ -20,14 +20,15 @@ ActiveRecord::Schema.define(version: 20150103220833) do
   end
 
   create_table "translated_model_translations", force: :cascade do |t|
-    t.string   "key",        null: false
-    t.string   "locale",     null: false
-    t.text     "value",      null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "key",             null: false
+    t.string   "locale",          null: false
+    t.text     "value",           null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "translated_id"
+    t.string   "translated_type"
   end
 
-  add_index "translated_model_translations", ["key"], name: "index_translated_model_translations_on_key", unique: true
   add_index "translated_model_translations", ["locale"], name: "index_translated_model_translations_on_locale"
 
 end
