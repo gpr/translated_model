@@ -56,7 +56,7 @@ module TranslatedModel
             tm = TranslatedModel::Translation.find_by(translated: self, key: tfield)
             value = tm.value if tm
           end
-          t = TranslatedModel::Translation.new(translated: self, key: tfield, locale: I18n.locale, value: value)
+          t = TranslatedModel::Translation.new(key: tfield, locale: I18n.locale, value: value)
         end
         t
       end
@@ -77,6 +77,7 @@ module TranslatedModel
 
       def save_translations
         @translated_fields.each do |tfield, t|
+          t.translated ||= self
           t.save
         end
       end
