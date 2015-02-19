@@ -13,13 +13,17 @@ module TranslatedModel
         after_initialize :set_translated_fields
         after_save :save_translations
 
+        default_scope -> { joins(:translations).where(translated_model_translations: { key: 'name' }) }
+
         cattr_accessor :translated_fields
         self.translated_fields = options[:translated_fields] || [:name, :description]
 
         self.translated_fields.each do |tfield|
-          has_many :translations, ->{where(locale: I18n.locale)}, class_name: "TranslatedModel::Translation", as: :translated
+          has_many :translations, class_name: "TranslatedModel::Translation", as: :translated
+          has_many :current_translations, ->{where(locale: I18n.locale)}, class_name: "TranslatedModel::Translation", as: :translated
 
           define_method "#{tfield}" do
+
             @translated_fields[tfield].value
           end
 
@@ -49,7 +53,7 @@ module TranslatedModel
       end
 
       def get_translated_model(tfield)
-        t = self.translations.find_by key: "#{tfield}" if self.translations
+        t = self.current_translations.find_by key: "#{tfield}" if self.current_translations
         unless t
           value = @field_values[tfield] if @field_values
           unless value
