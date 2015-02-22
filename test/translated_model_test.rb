@@ -56,4 +56,10 @@ class TranslatedModelTest < ActiveSupport::TestCase
     assert_equal item_d.description, item_d_description.value
   end
 
+  test "acts_as_translated_model has_on translated field" do
+    item_e = Item.create(key: 'item_e', name: 'Item E Name', description: 'Item E Description')
+    assert_equal 'Item E Name', item_e.t_name.value
+    assert_equal 'Item E Description', item_e.t_description.value
+  end
+
 end

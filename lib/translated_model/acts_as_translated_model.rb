@@ -39,6 +39,8 @@ module TranslatedModel
           define_method "translated_#{tfield}" do
             @translated_fields[tfield]
           end
+
+          has_one "t_#{tfield}".to_sym, ->{where(key: tfield).where(locale: I18n.locale)}, class_name: 'TranslatedModel::Translation', as: :translated
         end
 
         include TranslatedModel::ActsAsTranslatedModel::LocalInstanceMethods
