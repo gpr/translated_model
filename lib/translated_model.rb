@@ -19,5 +19,3 @@ module TranslatedModel
   end
 
 end
-
-require 'translated_model/railtie' if defined?(Rails)
