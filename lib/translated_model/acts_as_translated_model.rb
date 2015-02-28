@@ -13,7 +13,7 @@ module TranslatedModel
         after_initialize :set_translated_fields
         after_save :save_translations
 
-        default_scope -> { joins(:translations).where(translated_model_translations: { key: 'name' }) }
+        default_scope -> { joins(:translations).where(translated_model_translations: { key: 'name' }).distinct }
 
         cattr_accessor :translated_fields
         self.translated_fields = options[:translated_fields] || [:name, :description]
